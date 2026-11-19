@@ -1,0 +1,86 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Courtyard House",
+      "category": "Residential",
+      "location": "Jaipur",
+      "year": "2024",
+      "image": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=85",
+      "isLarge": true
+    },
+    {
+      "id": "2",
+      "title": "Quiet Lines",
+      "category": "Interior",
+      "location": "Pune",
+      "year": "2023",
+      "image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85",
+      "isLarge": false
+    },
+    {
+      "id": "3",
+      "title": "The Green Frame",
+      "category": "Residential",
+      "location": "Nashik",
+      "year": "2022",
+      "image": "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1000&q=85",
+      "isLarge": false
+    },
+    {
+      "id": "4",
+      "title": "Common Ground",
+      "category": "Community",
+      "location": "Indore",
+      "year": "2021",
+      "image": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85",
+      "isLarge": true
+    }
+  ],
+  "team": [
+    {
+      "id": "1",
+      "name": "Maya Kapoor",
+      "role": "Founding architect",
+      "photo": "https://i.pravatar.cc/700?img=47",
+      "isFeatured": true
+    },
+    {
+      "id": "2",
+      "name": "Arjun Mehta",
+      "role": "Design lead",
+      "photo": "https://i.pravatar.cc/600?img=12",
+      "isFeatured": false
+    },
+    {
+      "id": "3",
+      "name": "Nisha Rao",
+      "role": "Interior designer",
+      "photo": "https://i.pravatar.cc/600?img=32",
+      "isFeatured": false
+    },
+    {
+      "id": "4",
+      "name": "Rohan Sen",
+      "role": "Project architect",
+      "photo": "https://i.pravatar.cc/600?img=5",
+      "isFeatured": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "1795069161911",
+      "name": "shailesg",
+      "email": "mesgaukesg004@gmail.com",
+      "message": "this is testing",
+      "date": "2026-11-19T06:19:21.908Z"
+    },
+    {
+      "id": "1795071321946",
+      "name": "College Examiner",
+      "email": "examiner@university.edu",
+      "message": "Great architecture portfolio project!",
+      "date": "2026-11-19T06:55:21.942Z"
+    }
+  ]
+}

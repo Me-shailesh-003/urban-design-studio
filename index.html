@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Urban Design Studio — thoughtful architecture, interiors, and sustainable spaces.">
+  <title>Urban Design Studio | Architecture & Interiors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Urban Design Studio home">
+      <span class="brand-mark">UD</span>
+      <span>Urban Design<br><small>Studio</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="admin.html">Admin Portal <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Architecture · Interiors · Planning</p>
+        <h1>Spaces that make<br><em>everyday life</em> better.</h1>
+        <p class="hero-text">We shape warm, enduring places through thoughtful architecture, honest materials, and a clear sense of purpose.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#projects">Explore our work <span>↗</span></a>
+          <a class="text-link" href="#about">Discover the studio <span>↓</span></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image image-card">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85" alt="Sunlit modern living room">
+          <span class="image-label">Residence 01 <b>↗</b></span>
+        </div>
+        <div class="hero-note">Designed for the<br>way you live.</div>
+      </div>
+    </section>
+
+    <section class="intro section-shell" id="about">
+      <div class="section-kicker"><span>01</span><span>Our approach</span></div>
+      <div class="intro-grid">
+        <h2>Designing with<br><em>intention.</em></h2>
+        <div>
+          <p class="lead">Urban Design Studio is an independent practice creating meaningful spaces for people, communities, and the future.</p>
+          <p>From the first sketch to the final detail, we bring together research, craft, and collaboration. Every project is an opportunity to make a positive contribution to its surroundings.</p>
+          <a class="arrow-link" href="#contact">More about the studio <span>↗</span></a>
+        </div>
+      </div>
+      <div class="stats">
+        <div><strong>12</strong><span>Years of<br>practice</span></div>
+        <div><strong>48</strong><span>Projects<br>completed</span></div>
+        <div><strong>09</strong><span>Design<br>awards</span></div>
+        <div><strong>05</strong><span>Cities where<br>we work</span></div>
+      </div>
+    </section>
+
+    <section class="services section-shell" id="services">
+      <div class="section-kicker"><span>02</span><span>What we do</span></div>
+      <div class="section-heading">
+        <h2>Ideas into<br><em>architecture.</em></h2>
+        <p>Our small, experienced team works across scales to create spaces that feel considered, useful, and distinctly yours.</p>
+      </div>
+      <div class="service-list">
+        <article class="service-item">
+          <span class="service-number">01</span>
+          <div><h3>Architecture</h3><p>Homes and buildings that balance character, comfort, and context.</p></div>
+          <span class="service-arrow">↗</span>
+        </article>
+        <article class="service-item">
+          <span class="service-number">02</span>
+          <div><h3>Interior design</h3><p>Layered, tactile interiors shaped around everyday rituals.</p></div>
+          <span class="service-arrow">↗</span>
+        </article>
+        <article class="service-item">
+          <span class="service-number">03</span>
+          <div><h3>Urban planning</h3><p>Human-scale places that connect people, landscape, and movement.</p></div>
+          <span class="service-arrow">↗</span>
+        </article>
+        <article class="service-item">
+          <span class="service-number">04</span>
+          <div><h3>Visualisation</h3><p>Clear 3D storytelling that brings an idea to life before it is built.</p></div>
+          <span class="service-arrow">↗</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="projects section-shell" id="projects">
+      <div class="section-kicker"><span>03</span><span>Selected work</span></div>
+      <div class="section-heading projects-heading">
+        <h2>Made to<br><em>belong.</em></h2>
+        <a class="arrow-link" href="admin.html">Manage Projects <span>↗</span></a>
+      </div>
+      <div class="project-grid" id="projectGrid">
+        <!-- Rendered dynamically from backend / Firebase -->
+      </div>
+    </section>
+
+    <section class="team section-shell" id="team">
+      <div class="section-kicker"><span>04</span><span>People behind the work</span></div>
+      <div class="section-heading">
+        <h2>Meet the<br><em>studio.</em></h2>
+        <p>A collaborative group of architects, designers, and makers who believe the best work comes from listening closely.</p>
+      </div>
+      <div class="team-grid" id="teamGrid">
+        <!-- Rendered dynamically from backend / Firebase -->
+      </div>
+    </section>
+
+    <section class="contact section-shell" id="contact">
+      <div class="contact-inner">
+        <p class="eyebrow">Have a project in mind?</p>
+        <h2>Let’s make room<br>for <em>better ideas.</em></h2>
+
+        <form id="contactForm" class="contact-form">
+          <div class="form-row">
+            <input type="text" id="contactName" placeholder="Your Name" required>
+            <input type="email" id="contactEmail" placeholder="Your Email" required>
+          </div>
+          <textarea id="contactMessage" rows="4" placeholder="Tell us about your project or location..." required></textarea>
+          <div class="form-actions">
+            <button type="submit" class="button button-light">Send Message <span>↗</span></button>
+            <span id="contactStatus" class="contact-status"></span>
+          </div>
+        </form>
+
+        <div class="contact-details">
+          <div><span>Visit the studio</span><p>42 Lake View Road<br>Jaipur, Rajasthan 302001</p></div>
+          <div><span>Write to us</span><p>hello@urbandesignstudio.demo<br>+91 98765 43210</p></div>
+          <div><span>Follow along</span><p><a href="#top">Instagram</a><br><a href="#top">Behance</a></p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <span>© 2025 Urban Design Studio</span>
+    <span>College Minor Project</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image preview">×</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="">
+      <p id="lightboxTitle"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
