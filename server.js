@@ -71,8 +71,10 @@ async function deleteFromDb(collection, id) {
   return true;
 }
 
+const router = express.Router();
+
 // ImgBB upload endpoint
-app.post('/api/upload', upload.single('image'), async (req, res) => {
+router.post('/upload', upload.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'Please select an image file' });
@@ -103,12 +105,12 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 });
 
 // Projects API
-app.get('/api/projects', async (req, res) => {
+router.get('/projects', async (req, res) => {
   const projects = await getFromDb('projects');
   res.json(projects);
 });
 
-app.post('/api/projects', async (req, res) => {
+router.post('/projects', async (req, res) => {
   const { title, category, location, year, image, isLarge } = req.body;
   if (!title || !image) {
     return res.status(400).json({ error: 'Title and image are required' });
@@ -125,18 +127,18 @@ app.post('/api/projects', async (req, res) => {
   res.status(201).json(project);
 });
 
-app.delete('/api/projects/:id', async (req, res) => {
+router.delete('/projects/:id', async (req, res) => {
   await deleteFromDb('projects', req.params.id);
   res.json({ success: true });
 });
 
 // Team API
-app.get('/api/team', async (req, res) => {
+router.get('/team', async (req, res) => {
   const team = await getFromDb('team');
   res.json(team);
 });
 
-app.post('/api/team', async (req, res) => {
+router.post('/team', async (req, res) => {
   const { name, role, photo, isFeatured } = req.body;
   if (!name || !role || !photo) {
     return res.status(400).json({ error: 'Name, role, and photo are required' });
@@ -151,13 +153,13 @@ app.post('/api/team', async (req, res) => {
   res.status(201).json(member);
 });
 
-app.delete('/api/team/:id', async (req, res) => {
+router.delete('/team/:id', async (req, res) => {
   await deleteFromDb('team', req.params.id);
   res.json({ success: true });
 });
 
 // Contact API
-app.post('/api/contact', async (req, res) => {
+router.post('/contact', async (req, res) => {
   const { name, email, message } = req.body;
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'All fields are required' });
@@ -172,10 +174,14 @@ app.post('/api/contact', async (req, res) => {
   res.status(201).json({ success: true, message: 'Message sent successfully' });
 });
 
-app.get('/api/contact', async (req, res) => {
+router.get('/contact', async (req, res) => {
   const messages = await getFromDb('messages');
   res.json(messages);
 });
+
+// Support both /api/path and /path
+app.use('/api', router);
+app.use('/', router);
 
 if (require.main === module) {
   app.listen(PORT, () => {
