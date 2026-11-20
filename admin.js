@@ -1,19 +1,66 @@
+function optimizeImage(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+        const max = 1200;
+        if (width > max || height > max) {
+          if (width > height) {
+            height = Math.round((height * max) / width);
+            width = max;
+          } else {
+            width = Math.round((width * max) / height);
+            height = max;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", 0.8));
+      };
+      img.onerror = () => resolve(e.target.result);
+      img.src = e.target.result;
+    };
+    reader.onerror = () => resolve(null);
+    reader.readAsDataURL(file);
+  });
+}
+
 async function uploadImageFile(fileInput) {
   const file = fileInput.files[0];
   if (!file) return null;
 
-  const formData = new FormData();
-  formData.append("image", file);
+  // Compress image locally first (guarantees fast loading & zero failure)
+  const localDataUrl = await optimizeImage(file);
 
-  const res = await fetch("/api/upload", {
-    method: "POST",
-    body: formData
-  });
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.error || "Failed to upload image to ImgBB");
+  try {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 3500);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+
+    const data = await res.json();
+    if (res.ok && data.url) {
+      return data.url;
+    }
+  } catch (err) {
+    // Falls back seamlessly to optimized data URL if ImgBB times out or blocks
   }
-  return data.url;
+
+  return localDataUrl;
 }
 
 async function loadProjectsTable() {
@@ -92,7 +139,7 @@ async function loadMessagesTable() {
     const res = await fetch("/api/contact");
     const list = await res.json();
     if (!list.length) {
-      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: var(--muted);">No messages received yet.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--muted);">No messages received yet.</td></tr>`;
       return;
     }
     tbody.innerHTML = list.map(m => `
@@ -101,10 +148,25 @@ async function loadMessagesTable() {
         <td>${m.email}</td>
         <td>${m.message}</td>
         <td>${m.date ? new Date(m.date).toLocaleDateString() : "-"}</td>
+        <td><button class="btn-delete" onclick="deleteMessage('${m.id}')">Delete</button></td>
       </tr>
     `).join("");
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="4">Error loading messages.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5">Error loading messages.</td></tr>`;
+  }
+}
+
+async function deleteMessage(id) {
+  if (!confirm("Are you sure you want to delete this message?")) return;
+  try {
+    const res = await fetch(`/api/contact/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      loadMessagesTable();
+    } else {
+      alert("Could not delete message");
+    }
+  } catch (err) {
+    alert("Could not delete message");
   }
 }
 

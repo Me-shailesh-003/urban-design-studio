@@ -88,10 +88,15 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     const form = new FormData();
     form.append('image', req.file.buffer.toString('base64'));
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
+
     const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
       method: 'POST',
-      body: form
+      body: form,
+      signal: controller.signal
     });
+    clearTimeout(timeout);
     const data = await response.json();
 
     if (!data.success) {
@@ -177,6 +182,11 @@ router.post('/contact', async (req, res) => {
 router.get('/contact', async (req, res) => {
   const messages = await getFromDb('messages');
   res.json(messages);
+});
+
+router.delete('/contact/:id', async (req, res) => {
+  await deleteFromDb('messages', req.params.id);
+  res.json({ success: true });
 });
 
 // Support both /api/path and /path
