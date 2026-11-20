@@ -1,3 +1,12 @@
+async function parseResponse(res) {
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    return { error: text || "Server returned an error" };
+  }
+}
+
 function optimizeImage(file) {
   return new Promise((resolve) => {
     const reader = new FileReader();
@@ -7,7 +16,7 @@ function optimizeImage(file) {
         const canvas = document.createElement("canvas");
         let width = img.width;
         let height = img.height;
-        const max = 1200;
+        const max = 1000;
         if (width > max || height > max) {
           if (width > height) {
             height = Math.round((height * max) / width);
@@ -21,7 +30,7 @@ function optimizeImage(file) {
         canvas.height = height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL("image/jpeg", 0.8));
+        resolve(canvas.toDataURL("image/jpeg", 0.75));
       };
       img.onerror = () => resolve(e.target.result);
       img.src = e.target.result;
@@ -35,7 +44,6 @@ async function uploadImageFile(fileInput) {
   const file = fileInput.files[0];
   if (!file) return null;
 
-  // Compress image locally first (guarantees fast loading & zero failure)
   const localDataUrl = await optimizeImage(file);
 
   try {
@@ -52,7 +60,7 @@ async function uploadImageFile(fileInput) {
     });
     clearTimeout(timer);
 
-    const data = await res.json();
+    const data = await parseResponse(res);
     if (res.ok && data.url) {
       return data.url;
     }
@@ -67,8 +75,8 @@ async function loadProjectsTable() {
   const tbody = document.getElementById("projectsTableBody");
   try {
     const res = await fetch("/api/projects");
-    const list = await res.json();
-    if (!list.length) {
+    const list = await parseResponse(res);
+    if (!Array.isArray(list) || !list.length) {
       tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No projects found.</td></tr>`;
       return;
     }
@@ -101,8 +109,8 @@ async function loadTeamTable() {
   const tbody = document.getElementById("teamTableBody");
   try {
     const res = await fetch("/api/team");
-    const list = await res.json();
-    if (!list.length) {
+    const list = await parseResponse(res);
+    if (!Array.isArray(list) || !list.length) {
       tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: var(--muted);">No architects found.</td></tr>`;
       return;
     }
@@ -137,8 +145,8 @@ async function loadMessagesTable() {
   const tbody = document.getElementById("messagesTableBody");
   try {
     const res = await fetch("/api/contact");
-    const list = await res.json();
-    if (!list.length) {
+    const list = await parseResponse(res);
+    if (!Array.isArray(list) || !list.length) {
       tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--muted);">No messages received yet.</td></tr>`;
       return;
     }
@@ -208,7 +216,7 @@ document.getElementById("projectForm").addEventListener("submit", async (e) => {
     });
 
     if (!res.ok) {
-      const errData = await res.json();
+      const errData = await parseResponse(res);
       throw new Error(errData.error || "Failed to save project");
     }
 
@@ -258,7 +266,7 @@ document.getElementById("teamForm").addEventListener("submit", async (e) => {
     });
 
     if (!res.ok) {
-      const errData = await res.json();
+      const errData = await parseResponse(res);
       throw new Error(errData.error || "Failed to add team member");
     }
 
