@@ -1,9 +1,20 @@
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
+
+// Resolve .env path from either root or scripts folder
+const envPath = fs.existsSync(path.join(__dirname, '.env'))
+  ? path.join(__dirname, '.env')
+  : path.join(__dirname, '..', '.env');
+require('dotenv').config({ path: envPath });
 
 const fbUrl = process.env.FIREBASE_DB_URL ? process.env.FIREBASE_DB_URL.replace(/\/$/, '') : null;
-const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'data.json'), 'utf8'));
+
+// Resolve data.json path
+const dataPath = fs.existsSync(path.join(__dirname, 'data', 'data.json'))
+  ? path.join(__dirname, 'data', 'data.json')
+  : path.join(__dirname, '..', 'data', 'data.json');
+
+const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
 async function seed() {
   if (!fbUrl) {

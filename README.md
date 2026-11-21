@@ -1,52 +1,101 @@
 # Urban Design Studio
 
-An Architecture & Interior Design Portfolio with a Node.js backend, dynamic Firebase Realtime Database integration, and ImgBB media hosting.
+An architectural and interior design portfolio management platform built using a modern **3-Tier Full-Stack Architecture** with **Node.js, Express.js REST APIs**, **Google Firebase Realtime Database**, and **ImgBB Cloud Media Hosting**.
 
-## Tech Stack
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Backend:** Node.js, Express.js
-- **Database:** Firebase Realtime Database (with local JSON fallback)
-- **Image Hosting:** ImgBB API
+---
 
-## Key Features
-- **Dynamic Portfolio:** Project cards and details (location, year, category) load dynamically from the database.
-- **Architect Profiles:** Team members and architects loaded dynamically.
-- **Admin Control Panel:** Accessible at `/admin.html` to upload new architecture projects and team members.
-- **Image Upload:** Upload images directly to ImgBB via the backend REST API.
-- **Contact Form:** Interactive contact form that saves inquiries to the database.
-- **Responsive & Accessible:** Works across desktop, tablet, and mobile with lightbox previews.
+## 🌐 Live Production URL
+* **Client Website:** [https://urban-design-studio.vercel.app](https://urban-design-studio.vercel.app)
+* **Admin Control Panel:** [https://urban-design-studio.vercel.app/admin.html](https://urban-design-studio.vercel.app/admin.html)
 
-## Setup & Running Locally
+---
 
-1. Install dependencies:
-```bash
-npm install
+## 📁 Project Directory Structure
+
+```text
+Urban Design Studio/
+│
+├── 📁 public/                     # Client-Side Frontend (HTML5, CSS3, Vanilla JS)
+│   ├── index.html                 # Main Architectural Portfolio Webpage
+│   ├── admin.html                 # Private Studio Admin Control Panel
+│   ├── styles.css                 # Responsive Architectural Styling & Grid
+│   ├── script.js                  # Dynamic Project/Team Loader & Lightbox
+│   └── admin.js                   # Admin Operations & Canvas Image Optimizer
+│
+├── 📁 api/                        # Serverless Gateway (Vercel Functions)
+│   └── index.js                   # Serverless Express API Entrypoint
+│
+├── 📁 data/                       # Local Data Store & Offline Fallback
+│   └── data.json                  # Fallback JSON Storage & Initial Seed
+│
+├── 📁 docs/                       # Official Academic Minor Project Documentation
+│   ├── Project_Report_Urban_Design_Studio.pdf      # Complete 22-Page Final PDF Report
+│   ├── Project_Report_Urban_Design_Studio.docx     # Editable MS Word Document
+│   ├── Project_Report_Urban_Design_Studio.html     # Print-Ready HTML Report
+│   ├── Project_Report_Urban_Design_Studio.md       # Markdown Source Report
+│   └── 📁 assets/                                  # System Architecture & ER Diagrams
+│       ├── er-diagram.svg
+│       ├── dfd-level0.svg
+│       ├── dfd-level1.svg
+│       ├── architecture.svg
+│       └── university-logo.png
+│
+├── 📁 scripts/                    # Database & Automation Scripts
+│   └── seed.js                    # Firebase Database Seeder Utility
+│
+├── .env                           # Environment Variables (ImgBB API & Firebase DB)
+├── .env.example                   # Sample Configuration Template
+├── .gitignore                     # Git Ignored Files (node_modules, .env)
+├── package.json                   # Project Dependencies & NPM Scripts
+├── package-lock.json              # Dependency Version Lock
+├── Project_Report_Urban_Design_Studio.pdf # Direct Access Copy of 22-Page Final Report
+├── README.md                      # Project Guide & Documentation
+├── server.js                      # Core Node.js / Express REST API Server
+└── vercel.json                    # Vercel Deployment & Route Rewrites
 ```
 
-2. (Optional) Configure `.env` file:
-Create or edit `.env`:
-```env
-PORT=5000
-IMGBB_API_KEY=your_imgbb_api_key_here
-FIREBASE_DB_URL=https://your-firebase-database.firebaseio.com
-```
-*Note: If `.env` is left blank, the project automatically uses local JSON storage (`data/data.json`) so it runs out-of-the-box.*
+---
 
-3. Start the server:
-```bash
-npm start
-```
+## 🛠️ Technology Stack
+* **Presentation Layer:** Semantic HTML5, Modern CSS3 (Flexbox, CSS Grid, Custom Variables), Vanilla JavaScript (ES6+), HTML5 Canvas API (Client-side compression).
+* **Application Layer:** Node.js (v24.x LTS), Express.js RESTful API Framework, Multer multipart streaming.
+* **Database & Cloud Storage:** Google Firebase Realtime Database (NoSQL JSON REST API), ImgBB Cloud API v1.
+* **Deployment & CI/CD:** Vercel Edge Serverless Cloud Platform, Git, GitHub (`Me-shailesh-003/urban-design-studio`).
 
-4. Open in browser:
-- Main Website: `http://localhost:5000`
-- Admin Portal: `http://localhost:5000/admin.html`
+---
 
-## Free Deployment (Vercel / Render)
+## 🚀 Running Locally
 
-### Deploying on Render (Free)
-1. Push this project to your GitHub repository.
-2. Sign up on [render.com](https://render.com) (Free, no credit card required).
-3. Create a **New Web Service** and select your GitHub repo.
-4. Set Build Command: `npm install` and Start Command: `node server.js`.
-5. Add your Environment Variables (`IMGBB_API_KEY` and `FIREBASE_DB_URL`) under Settings.
-6. Click **Deploy**.
+1. **Clone & Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Configure Environment Variables (`.env`):**
+   ```env
+   PORT=5000
+   IMGBB_API_KEY=your_imgbb_api_key_here
+   FIREBASE_DB_URL=https://your-project-default-rtdb.firebaseio.com
+   ```
+
+3. **(Optional) Seed Firebase Database:**
+   ```bash
+   npm run seed
+   ```
+
+4. **Start the Application:**
+   ```bash
+   npm start
+   ```
+   * Open Main Website: `http://localhost:5000`
+   * Open Admin Panel: `http://localhost:5000/admin.html`
+
+---
+
+## 👥 Academic Project Team
+* **Institute:** Shri Vaishnav Institute of Computer Applications, SVVV Indore
+* **Course:** Master of Computer Applications (MCA — AI-ML), Session 2026–2027
+* **Guided By:** Prof. Shilpa Jaiswal (Professor, Department of Computer Application)
+* **Team Members:**
+  1. **Shailesh Parmar** (Enrollment No.: `2504MCAAIML0053`)
+  2. **Sandeep Jamod** (Enrollment No.: `2504MCAAIML0050`)

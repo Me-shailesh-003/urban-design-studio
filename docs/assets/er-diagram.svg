@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650">
+  <rect width="1100" height="650" fill="#ffffff"/>
+  <text x="550" y="52" text-anchor="middle" font-family="Arial" font-size="30" font-weight="bold" fill="#17365d">Urban Design Studio - ER Diagram</text>
+  <text x="550" y="82" text-anchor="middle" font-family="Arial" font-size="17" fill="#4a6482">Firebase Realtime Database Collections</text>
+  <rect x="35" y="145" width="300" height="350" fill="#fff" stroke="#17365d" stroke-width="4"/>
+  <rect x="400" y="145" width="300" height="350" fill="#fff" stroke="#17365d" stroke-width="4"/>
+  <rect x="765" y="145" width="300" height="350" fill="#fff" stroke="#17365d" stroke-width="4"/>
+  <text x="185" y="195" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">PROJECT</text>
+  <text x="550" y="195" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">TEAM MEMBER</text>
+  <text x="915" y="195" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">INQUIRY</text>
+  <line x1="35" y1="215" x2="335" y2="215" stroke="#17365d" stroke-width="3"/>
+  <line x1="400" y1="215" x2="700" y2="215" stroke="#17365d" stroke-width="3"/>
+  <line x1="765" y1="215" x2="1065" y2="215" stroke="#17365d" stroke-width="3"/>
+  <text x="185" y="260" text-anchor="middle" font-family="monospace" font-size="19" font-weight="bold">id (PK)</text>
+  <text x="185" y="305" text-anchor="middle" font-family="monospace" font-size="17">title</text>
+  <text x="185" y="340" text-anchor="middle" font-family="monospace" font-size="17">category</text>
+  <text x="185" y="375" text-anchor="middle" font-family="monospace" font-size="17">location, year</text>
+  <text x="185" y="410" text-anchor="middle" font-family="monospace" font-size="17">image, isLarge</text>
+  <text x="550" y="260" text-anchor="middle" font-family="monospace" font-size="19" font-weight="bold">id (PK)</text>
+  <text x="550" y="305" text-anchor="middle" font-family="monospace" font-size="17">name</text>
+  <text x="550" y="340" text-anchor="middle" font-family="monospace" font-size="17">role</text>
+  <text x="550" y="375" text-anchor="middle" font-family="monospace" font-size="17">photo</text>
+  <text x="550" y="410" text-anchor="middle" font-family="monospace" font-size="17">isFeatured</text>
+  <text x="915" y="260" text-anchor="middle" font-family="monospace" font-size="19" font-weight="bold">id (PK)</text>
+  <text x="915" y="305" text-anchor="middle" font-family="monospace" font-size="17">name</text>
+  <text x="915" y="340" text-anchor="middle" font-family="monospace" font-size="17">email</text>
+  <text x="915" y="375" text-anchor="middle" font-family="monospace" font-size="17">message</text>
+  <text x="915" y="410" text-anchor="middle" font-family="monospace" font-size="17">date</text>
+  <text x="550" y="535" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#17365d">Independent Collections - No Foreign-Key Relationships</text>
+  <text x="550" y="575" text-anchor="middle" font-family="Arial" font-size="16" fill="#4a6482">Each collection is keyed independently and managed by its own REST route.</text>
+</svg>
