@@ -30,15 +30,7 @@ Urban Design Studio/
 │
 ├── 📁 docs/                       # Official Academic Minor Project Documentation
 │   ├── Project_Report_Urban_Design_Studio.pdf      # Complete 22-Page Final PDF Report
-│   ├── Project_Report_Urban_Design_Studio.docx     # Editable MS Word Document
-│   ├── Project_Report_Urban_Design_Studio.html     # Print-Ready HTML Report
-│   ├── Project_Report_Urban_Design_Studio.md       # Markdown Source Report
-│   └── 📁 assets/                                  # System Architecture & ER Diagrams
-│       ├── er-diagram.svg
-│       ├── dfd-level0.svg
-│       ├── dfd-level1.svg
-│       ├── architecture.svg
-│       └── university-logo.png
+│   └── Project_Report_Urban_Design_Studio.docx     # Editable MS Word Document
 │
 ├── 📁 scripts/                    # Database & Automation Scripts
 │   └── seed.js                    # Firebase Database Seeder Utility
@@ -48,7 +40,6 @@ Urban Design Studio/
 ├── .gitignore                     # Git Ignored Files (node_modules, .env)
 ├── package.json                   # Project Dependencies & NPM Scripts
 ├── package-lock.json              # Dependency Version Lock
-├── Project_Report_Urban_Design_Studio.pdf # Direct Access Copy of 22-Page Final Report
 ├── README.md                      # Project Guide & Documentation
 ├── server.js                      # Core Node.js / Express REST API Server
 └── vercel.json                    # Vercel Deployment & Route Rewrites
