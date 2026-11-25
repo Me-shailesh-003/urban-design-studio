@@ -1,3 +1,7 @@
+const API_BASE = (window.location.port && window.location.port !== "5000" && !window.location.hostname.includes("vercel.app"))
+  ? "http://localhost:5000"
+  : "";
+
 async function parseResponse(res) {
   const text = await res.text();
   try {
@@ -53,7 +57,7 @@ async function uploadImageFile(fileInput) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 3500);
 
-    const res = await fetch("/api/upload", {
+    const res = await fetch(`${API_BASE}/api/upload`, {
       method: "POST",
       body: formData,
       signal: controller.signal
@@ -74,7 +78,7 @@ async function uploadImageFile(fileInput) {
 async function loadProjectsTable() {
   const tbody = document.getElementById("projectsTableBody");
   try {
-    const res = await fetch("/api/projects");
+    const res = await fetch(`${API_BASE}/api/projects`);
     const list = await parseResponse(res);
     if (!Array.isArray(list) || !list.length) {
       tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No projects found.</td></tr>`;
@@ -98,7 +102,7 @@ async function loadProjectsTable() {
 async function deleteProject(id) {
   if (!confirm("Are you sure you want to delete this project?")) return;
   try {
-    await fetch(`/api/projects/${id}`, { method: "DELETE" });
+    await fetch(`${API_BASE}/api/projects/${id}`, { method: "DELETE" });
     loadProjectsTable();
   } catch (err) {
     alert("Could not delete project");
@@ -108,7 +112,7 @@ async function deleteProject(id) {
 async function loadTeamTable() {
   const tbody = document.getElementById("teamTableBody");
   try {
-    const res = await fetch("/api/team");
+    const res = await fetch(`${API_BASE}/api/team`);
     const list = await parseResponse(res);
     if (!Array.isArray(list) || !list.length) {
       tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: var(--muted);">No architects found.</td></tr>`;
@@ -130,7 +134,7 @@ async function loadTeamTable() {
 async function deleteArchitect(id) {
   if (!confirm("Are you sure you want to remove this architect?")) return;
   try {
-    const res = await fetch(`/api/team/${id}`, { method: "DELETE" });
+    const res = await fetch(`${API_BASE}/api/team/${id}`, { method: "DELETE" });
     if (res.ok) {
       loadTeamTable();
     } else {
@@ -144,7 +148,7 @@ async function deleteArchitect(id) {
 async function loadMessagesTable() {
   const tbody = document.getElementById("messagesTableBody");
   try {
-    const res = await fetch("/api/contact");
+    const res = await fetch(`${API_BASE}/api/contact`);
     const list = await parseResponse(res);
     if (!Array.isArray(list) || !list.length) {
       tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--muted);">No messages received yet.</td></tr>`;
@@ -167,7 +171,7 @@ async function loadMessagesTable() {
 async function deleteMessage(id) {
   if (!confirm("Are you sure you want to delete this message?")) return;
   try {
-    const res = await fetch(`/api/contact/${id}`, { method: "DELETE" });
+    const res = await fetch(`${API_BASE}/api/contact/${id}`, { method: "DELETE" });
     if (res.ok) {
       loadMessagesTable();
     } else {
@@ -209,7 +213,7 @@ document.getElementById("projectForm").addEventListener("submit", async (e) => {
       isLarge: document.getElementById("pIsLarge").checked
     };
 
-    const res = await fetch("/api/projects", {
+    const res = await fetch(`${API_BASE}/api/projects`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -259,7 +263,7 @@ document.getElementById("teamForm").addEventListener("submit", async (e) => {
       photo: photoUrl
     };
 
-    const res = await fetch("/api/team", {
+    const res = await fetch(`${API_BASE}/api/team`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

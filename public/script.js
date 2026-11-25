@@ -1,3 +1,7 @@
+const API_BASE = (window.location.port && window.location.port !== "5000" && !window.location.hostname.includes("vercel.app"))
+  ? "http://localhost:5000"
+  : "";
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 const lightbox = document.getElementById("lightbox");
@@ -43,7 +47,7 @@ document.addEventListener("keydown", (e) => {
 async function loadProjects() {
   const container = document.getElementById("projectGrid");
   try {
-    const res = await fetch("/api/projects");
+    const res = await fetch(`${API_BASE}/api/projects`);
     const projects = await res.json();
 
     if (!projects || projects.length === 0) {
@@ -84,7 +88,7 @@ async function loadProjects() {
 async function loadTeam() {
   const container = document.getElementById("teamGrid");
   try {
-    const res = await fetch("/api/team");
+    const res = await fetch(`${API_BASE}/api/team`);
     const team = await res.json();
 
     if (!team || team.length === 0) {
@@ -115,7 +119,7 @@ if (contactForm) {
 
     status.textContent = "Sending...";
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message })
